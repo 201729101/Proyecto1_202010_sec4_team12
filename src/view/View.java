@@ -103,4 +103,19 @@ public class View
 				System.out.println(men[0]+"         |"+men[1]);
 			}
 		}
+		
+		public void printHist(Cola col)
+		{
+			System.out.println("Aproximación del número de comparendos por localidad.");
+			while(col.darTamano()>0)
+			{
+				String[] men = ((String) col.eliminar()).split(",");
+				String ast = "";
+				for(int i = 0 ; i< Integer.parseInt(men[1]) ; i++)
+				{
+					ast = ast + "*";
+				}
+				System.out.println(men[0]+"-----|"+ast);
+			}
+		}
 }

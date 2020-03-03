@@ -2,6 +2,7 @@ package model.logic;
 
 import java.util.Date;
 
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -492,8 +493,88 @@ public class Modelo
 		}
 	}
 
-	public ListaEncadenada tresC()
+	public void exch(Comparable[] datos, int i, int j) 
+	{ 
+		Comparable t = datos[i]; datos[i] = datos[j]; datos[j] = t; 
+	}
+
+	public void merge(Comparable[] datos, Comparable[] aux, int lo, int mid, int hi)
+	{ 
+		int i = lo, j = mid+1; 
+		for (int k = lo; k <= hi; k++) 
+		{ 
+			if (i > mid) aux[k] = datos[j++]; 
+			else if (j > hi) aux[k] = datos[i++]; 
+			else if (less(datos[j], datos[i])) aux[k] = datos[j++]; 
+			else aux[k] = datos[i++]; 
+		} 
+	}
+
+	public void mergeSort(Comparable[] datos, Comparable[] aux, int lo, int hi) 
+	{ 
+		if (hi <= lo) return; 
+		int mid = lo + (hi - lo) / 2; 
+		mergeSort (aux, datos, lo, mid); 
+		mergeSort (aux, datos, mid+1, hi); 
+		merge(datos, aux, lo, mid, hi); 
+	}
+
+	public boolean less(Comparable v, Comparable w) 
+	{ 
+		Comparendo V = (Comparendo) v;
+		Comparendo W = (Comparendo) w;
+		return V.getLocalidad().compareTo(W.getLocalidad()) < 0; 
+	}
+
+	public Comparable[] copiarComparendos()
 	{
+		Comparable[] retorno = new Comparable[lista.darTamano()];
+		int i = 0;
+		for(Nodo n = lista.darPrimero() ; n!= null ; n = n.darSiguiente())
+		{
+			retorno[i] = (Comparendo) n.darElemento();
+			i++;
+		}
+
+		return retorno;
+	}
+
+	public Cola tresC()
+	{
+		Comparable[] copia = copiarComparendos();
+		Comparable[] aux = copiarComparendos();
+		mergeSort(copia,aux,0,copia.length -1);
+
+		int cont = 1;
+		String actual = ((Comparendo) copia[0]).getLocalidad();
+		Cola retorno = new Cola();
+		try
+		{
+			for(int i = 1 ; i<copia.length ; i++)
+			{
+				Comparendo inf = (Comparendo) copia[i];
+				if(inf.getInfr().equals(actual))
+				{
+					cont ++;
+				}
+				else
+				{
+					retorno.agregar(actual + "," + cont);
+					cont = 1;
+					actual = inf.getLocalidad();
+				}
+
+				if(i==copia.length -1)
+				{
+					retorno.agregar(actual+","+cont);
+				}
+			}
+			return retorno;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 		return null;
 	}
 }
