@@ -147,7 +147,7 @@ public class Controller {
 
 			case 7:
 
-
+				view.printHist(modelo.tresC());
 				break;
 
 			case 8: 

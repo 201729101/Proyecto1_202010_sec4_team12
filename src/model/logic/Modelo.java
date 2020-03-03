@@ -546,14 +546,14 @@ public class Modelo
 		mergeSort(copia,aux,0,copia.length -1);
 
 		int cont = 1;
-		String actual = ((Comparendo) copia[0]).getLocalidad();
+		String actual = ((Comparendo) aux[0]).getLocalidad();
 		Cola retorno = new Cola();
 		try
 		{
 			for(int i = 1 ; i<copia.length ; i++)
 			{
-				Comparendo inf = (Comparendo) copia[i];
-				if(inf.getInfr().equals(actual))
+				Comparendo inf = (Comparendo) aux[i];
+				if(inf.getLocalidad().equals(actual))
 				{
 					cont ++;
 				}

@@ -110,8 +110,9 @@ public class View
 			while(col.darTamano()>0)
 			{
 				String[] men = ((String) col.eliminar()).split(",");
+				int N = (int) Integer.parseInt(men[1])/50;
 				String ast = "";
-				for(int i = 0 ; i< Integer.parseInt(men[1]) ; i++)
+				for(int i = 0 ; i< N ; i++)
 				{
 					ast = ast + "*";
 				}

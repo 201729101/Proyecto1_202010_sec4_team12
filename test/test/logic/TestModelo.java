@@ -2,9 +2,9 @@ package test.logic;
 
 import static org.junit.Assert.*;
 
-import model.logic.Infraccion;
-import model.logic.Modelo;
 
+import model.logic.Modelo;
+import model.data_structures.Comparendo;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -20,12 +20,12 @@ public class TestModelo {
 	
 	public void setUp2() 
 	{
-		modelo.leerDatos("comparendos_dei_2018_small.geojson");
+		modelo.cargarDatos("comparendos_dei_2018_small.geojson");
 	}
 	
 	public void setUp3()
 	{
-		modelo.agregarFinal(new Infraccion(0, null, null, null, null, null, null, null, 0, 0));
+		modelo.agregarFinal(new Comparendo(0, null, null, null, null, null, null, null, 0, 0));
 	}
 
 	@Test
@@ -51,7 +51,7 @@ public class TestModelo {
 	
 	@Test
 	public void testAgregarInicio(){
-		Infraccion inf = new Infraccion(0, null, null, null, null, null, null, null, 0, 0);
+		Comparendo inf = new Comparendo(0, null, null, null, null, null, null, null, 0, 0);
 		modelo.agregarInicio(inf);
 		assertEquals(1, modelo.darTamano());
 		assertEquals(0,modelo.darLista().darPrimero().darElemento().compareTo(inf));
@@ -67,7 +67,7 @@ public class TestModelo {
 	@Test
 	public void testEliminar() {
 		setUp3();
-		Infraccion inf = modelo.eliminar(0);
+		Comparendo inf = modelo.eliminar(0);
 		assertNull(modelo.buscar(0));
 	}
 
