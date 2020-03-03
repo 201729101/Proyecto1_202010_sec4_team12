@@ -24,7 +24,7 @@ public class View
 	     */
 		public void printMenu()
 		{
-			System.out.println("1. Cargar Comaprendos");
+			System.out.println("1. Cargar Comparendos");
 			System.out.println("2. 1A");
 			System.out.println("3. 2A");
 			System.out.println("4. 3A");
